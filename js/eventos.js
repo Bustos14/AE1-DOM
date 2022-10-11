@@ -12,7 +12,7 @@ function inicializador(){
 function cabeceraPagina(tabla){
     //Creo logo para la imagen 
     let mostrarLogo = document.createElement("img");
-    mostrarLogo.src = "ASINSTANTE_free-file.png";
+    mostrarLogo.src = "./images/ASINSTANTE_free-file.png";
     //Dimensiones provisionales
     mostrarLogo.setAttribute("width", "150");
     mostrarLogo.setAttribute("heigth", "200");
