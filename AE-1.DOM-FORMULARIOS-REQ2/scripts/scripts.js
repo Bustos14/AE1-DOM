@@ -1,8 +1,20 @@
-//Constante nombre
-const nombre = document.getElementById("nombre");
-const telefono = document.getElementById("telefono");
-const direccion = document.getElementById("direccion");
-const email = document.getElementById("email");
+
+let validarFormulario = function(e){    
+    const parrafo = document.getElementById("warning");
+    console.log("entrando en validarFormulario")
+    let ok = true;
+    if(nombre.value.trim() == ""){
+        parrafo.innerHTML="Compruebe el formulario, le faltan campos"
+        ok = false;
+    }
+    return ok;
+}
+window.onload = function(){
+//Constantes con los valores
+const nombre = document.getElementById("nombre").value;
+const telefono = document.getElementById("telefono").value;
+const direccion = document.getElementById("direccion").value;
+const email = document.getElementById("email").value;
 
 const formulario = document.getElementById("formulario");
 
@@ -17,7 +29,6 @@ const ing4 = document.getElementById("ing4");
 
 const btnEnviar = document.getElementById("btnEnviar");
 
-const parrafo = document.getElementById("warning");
 
 
 
@@ -25,26 +36,19 @@ btnEnviar.onclick = function(e){
     if(!validarFormulario()){
         e.preventDefault();
     }
-}
-
-
-btnEnviar.onclick = validarFormulario
-
 
 }
 
-let validarFormulario = function(e){
-    let ok = true;
-    if(telefo.value == ""){
-        parrafo.innerHTML="Dato obligatorio";
-        ok = false;
-    }
-    return ok;
+btnEnviar.onmouseover = function(e){
+    console.log("Entrando en mouseover")
 }
-window.onload = function(){
-btnEnviar.onclick = function(e){
-    if(!validarFormulario()){
-        e.preventDefault();
-    }
+
+btnEnviar.onmouseout = function(e){
+    console.log("saliendo");
 }
+
+
+
+
 }
+
