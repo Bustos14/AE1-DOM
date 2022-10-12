@@ -8,9 +8,10 @@
     <script type="text/javascript" src="scripts/scripts.js"></script>
     <title>Dom y Formularios. Requerimento 2</title>
 </head>
+
 <body>
     <h1>Formulario Requerimento 2</h1>
-    <form action="index.html" name="formulario" class="formulario">
+    <form action="" name="formulario" class="formulario">
         <legend>¿Cómo quieres la pizza hoy?</legend>
         <div class="contenedor-campos">
         <!-- Cajas de texto -->
@@ -18,25 +19,25 @@
                     <!-- Nombre-->
         <div class="campo">
             <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" required>
+            <input type="text" name="nombre" id="nombre" >
         </div>
         
                     <!-- Telefono -->
         <div class="campo">
             <label for="telefono">Telefono: </label>
-            <input type="text" name="telefono" id="telefono" required>
+            <input type="text" name="telefono" id="telefono" >
         </div>
 
                      <!-- Direccion -->
         <div class="campo largo">
             <label for="direccion">Direccion: </label>
-            <input type="text" name="direccion" id="direccion" required>
+            <input type="text" name="direccion" id="direccion" >
         </div>
 
                     <!-- Email -->
         <div class="campo largo">
             <label for="email">Email: </label>
-            <input type="text" name="email" id="email" required>
+            <input type="text" name="email" id="email" >
         </div>
 
 
@@ -44,8 +45,8 @@
         
         <!-- Radio buttons -->
         <div class="campo campo-pizza">
-            <label for="pequeña">Pizza pequeña</label>
-            <input type="radio" name="tamaño" id="pequeña">
+            <label for="pequenia">Pizza pequeña</label>
+            <input type="radio" name="tamaño" id="pequenia">
         </div>
 
         <div class="campo campo-pizza">
@@ -84,6 +85,7 @@
         <!-- Boton -->
         <div>
             <button type="submit" id="btnEnviar" value="Enviar" class="boton">Enviar formulario</button>
+            <p class="warning" id="warning"></p>
         </div>
     </form>
 
