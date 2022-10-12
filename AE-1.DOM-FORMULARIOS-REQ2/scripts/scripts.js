@@ -6,15 +6,18 @@ let validarFormulario = function(e){
     if(nombre.value.trim() == ""){
         parrafo.innerHTML="Compruebe el formulario, le faltan campos"
         ok = false;
+    } if (telefono.value.trim() == ""){
+
     }
     return ok;
 }
 window.onload = function(){
 //Constantes con los valores
-const nombre = document.getElementById("nombre").value;
 const telefono = document.getElementById("telefono").value;
 const direccion = document.getElementById("direccion").value;
 const email = document.getElementById("email").value;
+
+const parrafoAlert = document.getElementById("parrafoAlert");
 
 const formulario = document.getElementById("formulario");
 
@@ -29,15 +32,21 @@ const ing4 = document.getElementById("ing4");
 
 const btnEnviar = document.getElementById("btnEnviar");
 
-
-
-
 btnEnviar.onclick = function(e){
     if(!validarFormulario()){
         e.preventDefault();
     }
 
 }
+
+
+nombre.onmouseout = function(e){
+    if(nombre.value.trim() == ""){
+        parrafoAlert.innerHTML = "Debes introducir un nombre"
+        parrafoAlert.className += " warning"
+    }
+}
+//Funciones prueba
 
 btnEnviar.onmouseover = function(e){
     console.log("Entrando en mouseover")
