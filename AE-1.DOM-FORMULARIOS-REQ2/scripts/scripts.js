@@ -19,6 +19,20 @@ const btnEnviar = document.getElementById("btnEnviar");
 
 const parrafo = document.getElementById("warning");
 
+
+
+btnEnviar.onclick = function(e){
+    if(!validarFormulario()){
+        e.preventDefault();
+    }
+}
+
+
+btnEnviar.onclick = validarFormulario
+
+
+}
+
 let validarFormulario = function(e){
     let ok = true;
     if(telefo.value == ""){
