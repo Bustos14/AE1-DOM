@@ -42,8 +42,8 @@ btnEnviar.onclick = function(e){
 
 nombre.onmouseout = function(e){
     if(nombre.value.trim() == ""){
-        parrafoAlert.innerHTML = "Debes introducir un nombre"
-        parrafoAlert.className += " warning"
+        // parrafoAlert.innerHTML = "Debes introducir un nombre"
+        // parrafoAlert.className += " warning"
     }
 }
 //Funciones prueba
