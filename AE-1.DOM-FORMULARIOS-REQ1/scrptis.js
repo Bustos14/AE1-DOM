@@ -13,6 +13,10 @@ for(let i = 1; i < 6; i++){
 }
 
 //Creamos dos radio button con 4 opciones
+for(let i = 1; i < 6; i++){
+    
+}
+
 /*
  const labelradioButton = document.createElement('label');
         document.querySelector('Form').appendChild(labelradioButton);
