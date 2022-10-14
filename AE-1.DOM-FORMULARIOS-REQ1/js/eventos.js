@@ -7,6 +7,7 @@ function inicializador(){
     cabeceraPagina(tabla);
     inicializadorSelect(tabla);
     inicializadorDivFormulario(tabla);
+
     divPrincipal.appendChild(tabla);
 }
 function cabeceraPagina(tabla){
@@ -48,8 +49,8 @@ function inicializadorDivFormulario(tabla){
 
     //Interior div
     let tablaFormularios = document.createElement("table");
+    tablaFormularios.id = "tablaDinamica";
     inicializadorDatos(tablaFormularios);
-    inicializadorDinamico(tablaFormularios);
     divFormulario.appendChild(tablaFormularios);
 }
 
@@ -87,7 +88,7 @@ function inicializadorDatos(tablaFormulario){
     telefono.setAttribute("type", "number");
     //Composición dirección
     let lbDireccion = document.createElement("label");
-    let txtDireccion = document.createTextNode(" Direcció: ");
+    let txtDireccion = document.createTextNode(" Dirección: ");
     lbDireccion.appendChild(txtDireccion); 
     let direccion = document.createElement("input");
     lbDireccion.appendChild(direccion);
@@ -106,7 +107,6 @@ function inicializadorDatos(tablaFormulario){
 
 //Funcion para inicializar y gestionar el dinamismo del formulario
 function inicializadorDinamico(tablaFormulario){
-
     //Composición DNI
     let lbDni = document.createElement("label");
     let txtDni = document.createTextNode(" EJEMPLO PRUEBAS: ");
@@ -133,6 +133,7 @@ function segundoDinamicoPrueba(tablaFormulario){
 
   let trDinamico = document.createElement("tr");
   trDinamico.appendChild(lbDni);
+  trDinamico.id = "chilDinamico"
   tablaFormulario.appendChild(trDinamico);
   tablaFormulario.setAttribute("style", "height: 100%; width: 100%");
 }
@@ -144,7 +145,7 @@ function inicializadorSelect(tabla){
     //Creamos fila y select de opciones
     let trSelects = document.createElement("tr");
     let selects = document.createElement("select");
-
+    selects.id ="selects";
     //Bucle dinámico para obtener opciones
     for(let ayuda of ayudas){
         let opcion = document.createElement("option");
@@ -153,12 +154,43 @@ function inicializadorSelect(tabla){
         opcion.setAttribute("align", "center");
         selects.appendChild(opcion);
     }
-    //Asignamos select a la fila y tabla 
     trSelects.appendChild(selects);
     tabla.appendChild(trSelects);
+    interaccionEventoSelect(selects);
 }
+//Funcion de control de la interaccion del usuario con el elemento select para el cambio de formulario
+function interaccionEventoSelect(selects){
+ //Añado un listener al select para poder controlar el evento de cambio de opcion.
+ selects.addEventListener("change", function(){
+    //Encapsulamos el select por via de la ID para poder acceder al listado de opciones en funcion al que seleccionados 
+    //y asi obtener su texto
+    let element = document.getElementById("selects");
+    let text = element.options[element.selectedIndex].text;
+    //En funcion del texto seleccionado, el formulario 2 cambiará
+    let tabla = document.getElementById("tablaDinamica");
+    vaciadoDinamico(tabla);
+    if(text == "Problema con un conductor"){
+        inicializadorDinamico(tabla);
+      
+    }else if (text== "Objeto perdido"){
+        segundoDinamicoPrueba(tabla);
+    }
+})
+//Asignamos select a la fila y tabla 
+}
+
 //Funcion que devuelve un array de objetos pelicula
 function listaOpcionesAyuda(){
-    let ayudas = ["Objeto perdido", "Problema con un conductor"];
+    let ayudas = ["¿Que asistencia necesita?","Objeto perdido", "Problema con un conductor"];
     return ayudas;    
+}
+
+function vaciadoDinamico(tabla){
+    //Obtenemos los nodos hijos de la tabla
+    let nodoTable = tabla.childNodes
+     //Comprobamos que si existe un elemento en la posicion 1 lo borre 
+        //para asi eliminar el formulario si se ha creado
+        if(nodoTable[1]){
+            nodoTable[1].remove();
+        }
 }
