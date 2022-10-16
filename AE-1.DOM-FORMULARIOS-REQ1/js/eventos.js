@@ -106,7 +106,7 @@ function inicializadorDatos(tablaFormulario){
 }
 
 //Funcion para inicializar y gestionar el dinamismo del formulario
-function inicializadorDinamico(tablaFormulario){
+function formularioProblemas(tablaFormulario){
     //Composición DNI
     let lbDni = document.createElement("label");
     let txtDni = document.createTextNode(" EJEMPLO PRUEBAS: ");
@@ -122,17 +122,30 @@ function inicializadorDinamico(tablaFormulario){
 
   
 }
-function segundoDinamicoPrueba(tablaFormulario){
-  //Composición DNI
-  let lbDni = document.createElement("label");
-  let txtDni = document.createTextNode(" EJEMPLO PRUEBAS223123123: ");
-  lbDni.appendChild(txtDni); 
-  let dni = document.createElement("input");
-  lbDni.appendChild(dni);
-  dni.setAttribute("type", "text");
+function formularioObjeto(tablaFormulario){
+ 
+    const field = document.createElement("fieldset");
+    const titulo = document.createElement("legend");
+    const textTiulo = document.createTextNode("¿Que tipo de objeto ha perdido?")
+    titulo.appendChild(textTiulo);
+    field.appendChild(titulo);
 
+    let posiblesObjetos = ["Movil","Llaves", "Gafas", "Joyeria", "Otros"];
+    //Creamos radio button con 4 opciones
+    for(objetos of posiblesObjetos){    
+        const radio = document.createElement("label");
+        radio.textContent=objetos;
+        const radioBtn = document.createElement("input");
+        radioBtn.type="radio";
+        radioBtn.name="objeto";
+        radioBtn.id = objetos;
+        radioBtn.style.margin = "8px";
+        field.appendChild(radio);
+        field.appendChild(radioBtn);
+
+    }
   let trDinamico = document.createElement("tr");
-  trDinamico.appendChild(lbDni);
+  trDinamico.appendChild(field);
   trDinamico.id = "chilDinamico"
   tablaFormulario.appendChild(trDinamico);
   tablaFormulario.setAttribute("style", "height: 100%; width: 100%");
@@ -170,13 +183,11 @@ function interaccionEventoSelect(selects){
     let tabla = document.getElementById("tablaDinamica");
     vaciadoDinamico(tabla);
     if(text == "Problema con un conductor"){
-        inicializadorDinamico(tabla);
-      
+        formularioProblemas(tabla);
     }else if (text== "Objeto perdido"){
-        segundoDinamicoPrueba(tabla);
+        formularioObjeto(tabla);
     }
 })
-//Asignamos select a la fila y tabla 
 }
 
 //Funcion que devuelve un array de objetos pelicula
