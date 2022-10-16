@@ -133,10 +133,47 @@ function formularioProblemas(tablaFormulario){
     tablaFormulario.appendChild(trDinamico);
     tablaFormulario.setAttribute("style", "height: 100%; width: 100%");
     trDinamico.setAttribute("style", "height: 100%; width: 100%");
-    //Funcionalidad de radiobutton 
-    radioButton(trDinamico);
-
-  
+    field = document.createElement("fieldset");
+    titulo = document.createElement("legend");
+    textTiulo = document.createTextNode("Pulse el boton 'Siguiente' para seleccionar la imagen de la marca del coche del conductor")
+    titulo.appendChild(textTiulo);
+    field.appendChild(titulo);
+    //Creamos la imagen contenedora para seleecionar la marca, con el logo de base
+    let imagenMarca = document.createElement("img");
+    imagenMarca.src = "./images/ASINSTANTE_free-file.png";
+    imagenMarca.setAttribute("style", "height: 250px; width: 300px;");
+    let divImagen = document.createElement("div");
+    field.appendChild(imagenMarca);
+    divImagen.appendChild(field);
+    trDinamico.appendChild(divImagen);
+    let btnPrev = document.createElement("button");
+    btnPrev.textContent = "Siguiente"
+    trDinamico.appendChild(btnPrev);
+    //Funcion cambio de imagenes
+    cambioImagen (btnPrev, imagenMarca);
+    let textAreaOpcion = document.createElement("textArea");
+    textAreaOpcion.placeholder = "Introduzca una descripción de lo que ha ocurrido";
+    textAreaOpcion.setAttribute("style", "heigh: 40%; width: 95%; margin: 8px")
+    trDinamico.appendChild(textAreaOpcion);
+    let btnEnviar = document.createElement("button");
+    let textBtn = document.createTextNode("Enviar")
+    btnEnviar.appendChild(textBtn);
+    tablaFormulario.appendChild(btnEnviar);
+    enviar(btnEnviar);
+}
+function cambioImagen (btnPrev, imagenMarca){
+    let listaImagenes =   ["./images/citroen.jpg","./images/hyundai.png", "./images/nissan.jpg"];
+    let i = 0;
+    btnPrev.addEventListener("click", function(){
+        if(i>0){
+            imagenMarca.src = listaImagenes[i];
+            i--;
+        }else if (i==0){
+            imagenMarca.src = listaImagenes[i];
+            i=listaImagenes.length-1;
+        }
+        
+    })
 }
 function formularioObjeto(tablaFormulario){
  
@@ -170,27 +207,27 @@ function formularioObjeto(tablaFormulario){
     radioButton(trDinamico);
     const divCheck = document.createElement("div");
     divCheck.style.marginTop="20px";  
-        const checkbox = document.createElement("label");
-        checkbox.textContent="Sí";
-        const checkboxBtn= document.createElement("input");
-        checkboxBtn.type="checkbox";
-        checkboxBtn.id = "checkDescripcion"
-        checkboxBtn.style.margin = "8px";
-        field = document.createElement("fieldset");
-        titulo = document.createElement("legend");
-        textTiulo = document.createTextNode("¿Desea añadir una descripción detallada?")
-        titulo.appendChild(textTiulo);
-        field.appendChild(titulo);
-        field.appendChild(checkbox);
-        field.appendChild(checkboxBtn);
-        tablaFormulario.appendChild(divCheck);
-        divCheck.appendChild(field);
-        checkButton(field)
-        let btnEnviar = document.createElement("button");
-        let textBtn = document.createTextNode("Enviar")
-        btnEnviar.appendChild(textBtn);
-        tablaFormulario.appendChild(btnEnviar);
-        enviar(btnEnviar)
+    const checkbox = document.createElement("label");
+    checkbox.textContent="Sí";
+    const checkboxBtn= document.createElement("input");
+    checkboxBtn.type="checkbox";
+    checkboxBtn.id = "checkDescripcion"
+    checkboxBtn.style.margin = "8px";
+    field = document.createElement("fieldset");
+    titulo = document.createElement("legend");
+    textTiulo = document.createTextNode("¿Desea añadir una descripción detallada?")
+    titulo.appendChild(textTiulo);
+    field.appendChild(titulo);
+    field.appendChild(checkbox);
+    field.appendChild(checkboxBtn);
+    tablaFormulario.appendChild(divCheck);
+    divCheck.appendChild(field);
+    checkButton(field)
+    let btnEnviar = document.createElement("button");
+    let textBtn = document.createTextNode("Enviar")
+    btnEnviar.appendChild(textBtn);
+    tablaFormulario.appendChild(btnEnviar);
+    enviar(btnEnviar)
 }
 //Funcion que comprueba si el campo "otros" de los radioButton esta checkeado, haciendo aparecer o desaparecer
 // un area de texto
@@ -207,6 +244,7 @@ function radioButton(trDinamico){
     })
         
 }
+//Función de control de checkButton, cuando se selecciona muestra un textArea
 function checkButton(divCheck){
     divCheck.addEventListener("change", function(){
         if(document.getElementById("checkDescripcion").checked){
@@ -220,6 +258,7 @@ function checkButton(divCheck){
     })
         
 }
+//Botón de enviar para cambiar la pagina con un nuevo mensaje
 function enviar(btnEnviar){
     btnEnviar.addEventListener("click", function(){
         document.write('<img src="./images/ASINSTANTE_free-file.png">');
