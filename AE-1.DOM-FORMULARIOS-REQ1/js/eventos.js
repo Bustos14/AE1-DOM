@@ -232,7 +232,7 @@ function formularioObjeto(tablaFormulario){
 //Funcion que comprueba si el campo "otros" de los radioButton esta checkeado, haciendo aparecer o desaparecer
 // un area de texto
 function radioButton(trDinamico){
-    trDinamico.addEventListener("change", function(){
+    document.getElementById("Otros").addEventListener("click", function(){
         if(document.getElementById("Otros").checked){
             let textInput = document.createElement("input");
             textInput.placeholder = "Introduzca el tipo de objeto que ha perdido";
@@ -246,10 +246,10 @@ function radioButton(trDinamico){
 }
 //Función de control de checkButton, cuando se selecciona muestra un textArea
 function checkButton(divCheck){
-    divCheck.addEventListener("change", function(){
+    document.getElementById("checkDescripcion").addEventListener("click", function(){
+        let textAreaOpcion = document.createElement("textArea");
+        textAreaOpcion.placeholder = "Introduzca el tipo de objeto que ha perdido";
         if(document.getElementById("checkDescripcion").checked){
-            let textAreaOpcion = document.createElement("textArea");
-            textAreaOpcion.placeholder = "Introduzca el tipo de objeto que ha perdido";
             textAreaOpcion.setAttribute("style", "heigh: 40%; width: 95%; margin: 8px")
             divCheck.appendChild(textAreaOpcion);
         }else{
