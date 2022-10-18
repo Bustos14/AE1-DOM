@@ -11,6 +11,8 @@ let validarFormulario = function(e){
     }
     return ok;
 }
+
+
 window.onload = function(){
 //Constantes con los valores
 const telefono = document.getElementById("telefono").value;
@@ -38,6 +40,14 @@ btnEnviar.onclick = function(e){
     }
 
 }
+
+//Función mostrar total
+    var suma = 0;
+    var elementos = document.getElementsByName("tamaño");
+    for(var i = 0; i < elementos.length; i++){
+        console.log(elementos[i])
+    }
+
 
 
 nombre.onmouseout = function(e){
