@@ -42,12 +42,15 @@ btnEnviar.onclick = function(e){
 }
 
 //Función mostrar total
-    var suma = 0;
-    var elementos = document.getElementsByName("tamaño");
-    for(var i = 0; i < elementos.length; i++){
-        console.log(elementos[i])
-    }
+btnEnviar.onclick = function(e){
+    let radioActivo = document.querySelector('input[name="tamaño"]:checked');
+    if(radioActivo) {
+        alert("El precio total es" + radioActivo.value + "€");
+    } else {
+        alert('No hay ninún elemento activo');
+}
 
+}
 
 
 nombre.onmouseout = function(e){
