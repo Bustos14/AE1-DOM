@@ -19,28 +19,28 @@
                     <!-- Nombre-->
         <div class="campo">
             <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre" >
+            <input type="text" name="nombre" id="nombre" required>
             <p class="warning" name="parrafoAlert" id="parrafoAlert"></p>
         </div>
         
                     <!-- Telefono -->
         <div class="campo">
             <label for="telefono">Telefono: </label>
-            <input type="text" name="telefono" id="telefono" >
+            <input type="text" name="telefono" id="telefono" required>
             <p class="warning" name="parrafoAlert" id="parrafoAlert"></p>
         </div>
 
                      <!-- Direccion -->
         <div class="campo largo">
             <label for="direccion">Direccion: </label>
-            <input type="text" name="direccion" id="direccion" >
+            <input type="text" name="direccion" id="direccion" required>
             <p class="warning" name="parrafoAlert" id="parrafoAlert"></p>
         </div>
 
                     <!-- Email -->
         <div class="campo largo">
             <label for="email">Email: </label>
-            <input type="text" name="email" id="email" >
+            <input type="text" name="email" id="email" required>
             <p class="warning" name="parrafoAlert" id="parrafoAlert"></p>
         </div>
 
@@ -49,41 +49,41 @@
         
         <!-- Radio buttons -->
         <div class="campo campo-pizza">
-            <label for="pequenia">Pizza pequeña</label>
-            <input type="radio" name="tamaño" id="pequenia">
+            <label for="pequenia">Pizza pequeña 5€</label>
+            <input type="radio" value="5" name="tamaño" id="pequenia">
         </div>
 
         <div class="campo campo-pizza">
-            <label for="mediana">Pizza mediana</label>
-            <input type="radio" name="tamaño" id="mediana">
+            <label for="mediana">Pizza mediana 10€</label>
+            <input type="radio" value="10" name="tamaño" id="mediana">
         </div>
 
         <div class="campo campo-pizza">
-            <label for="grande">Pizza grande</label>
-            <input type="radio" name="tamaño" id="grande">
+            <label for="grande">Pizza grande 15€</label>
+            <input type="radio" value="15" name="tamaño" id="grande">
         </div>
 
-        <h3 class="tittle-second">Eliga los ingredientes de tu pizza</h3>
+        <h3 class="tittle-second">Eliga los ingredientes de tu pizza (cada ingrediente 1€)</h3>
 
         <!-- Checkbox -->
         <div class="campo campo-ingrediente ">
             <label for="ing1">Ingrediente 1</label>
-            <input type="checkbox" name="ing1" id="ing1">
+            <input type="checkbox" name="ingredientes" id="ing1" value="1">
         </div>
 
         <div class="campo campo-ingrediente  ">
             <label for="ing2">Ingrediente 2</label>
-            <input type="checkbox" name="ing2" id="ing2">
+            <input type="checkbox" name="ingredientes" id="ing2" value="1">
         </div>
 
         <div class="campo campo-ingrediente ">
             <label for="ing3">Ingrediente 3</label>
-            <input type="checkbox" name="ing3" id="ing3">
+            <input type="checkbox" name="ingredientes" id="ing3" value="1">
         </div>
 
         <div class="campo campo-ingrediente ">
             <label for="ing4">Ingrediente 4</label>
-            <input type="checkbox" name="ing4" id="ing4">
+            <input type="checkbox" name="ingredientes" id="ing4" value="1">
         </div>
     </div>
         <!-- Boton -->
