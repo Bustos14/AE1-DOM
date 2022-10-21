@@ -46,6 +46,7 @@ function suma(a,b){
 }
 
 //Función mostrar total
+    let pTotal = document.getElementById("total");
     let total = 0;
 btnEnviar.onclick = function(e){
     //Variable para seleccionar los radios con el nombre tamaño y esten chekeados
@@ -59,10 +60,10 @@ btnEnviar.onclick = function(e){
     }
     else {
         e.preventDefault();
-        alert('No hay ninún elemento activo');
+        alert('Debes seleccionar un tamaño y almenos un ingrediente');
     }
 
-    alert("El precio total de su pedido es: "+total);
+    pTotal.innerHTML = `El precio total es ${total} €`
 }
 
 
