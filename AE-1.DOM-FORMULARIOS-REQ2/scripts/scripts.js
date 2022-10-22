@@ -46,20 +46,24 @@ function suma(a,b){
 }
 
 //Función mostrar total
-    var total = 0;
+    let pTotal = document.getElementById("total");
+    let total = 0;
 btnEnviar.onclick = function(e){
     //Variable para seleccionar los radios con el nombre tamaño y esten chekeados
     let radioActivo = document.querySelector('input[name="tamaño"]:checked');
     //Variable para seleccionar los check con el nombre ingredientes
-    //let checks = document.querySelector('input[name="ingredientes]:checked');
-    //let checks = document.formulario.ingredientes.checked;
+    let checks = document.querySelector('input[name="ingredientes"]:checked');
     if(radioActivo) {
-        total = radioActivo.value;
-    } else {
-        e.preventDefault();
-        alert('No hay ninún elemento activo');
+        total += Number(radioActivo.value);
+    } if(checks) {
+        total += Number(checks.value);
     }
-    alert("El precio total de su pedido es: "+total);
+    else {
+        e.preventDefault();
+        alert('Debes seleccionar un tamaño y almenos un ingrediente');
+    }
+
+    pTotal.innerHTML = `El precio total es ${total} €`
 }
 
 
