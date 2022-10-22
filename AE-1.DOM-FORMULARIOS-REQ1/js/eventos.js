@@ -1,6 +1,7 @@
 
-//Tabla, divFormulario como variable gobal
+//Variable para hacer saltos de linea
 const saltito = document.createElement("br");
+//Funcion que inicializa la pagina al cargar
 window.onload = function(){
     let tabla;
     tabla = document.createElement("table")
@@ -9,6 +10,7 @@ window.onload = function(){
     inicializadorDivFormulario(tabla);
     divPrincipal.appendChild(tabla);
 }
+//Crea la cabecera de la pagina
 function cabeceraPagina(tabla){
     //Creo logo para la imagen 
     let mostrarLogo = document.createElement("img");
@@ -175,8 +177,10 @@ function cambioImagen (btnPrev, imagenMarca){
         
     })
 }
+//Crea el formulariio para objetos perdidos
 function formularioObjeto(tablaFormulario){
  
+    //Creo FIELD para contener el tipo de objeto perdido y sus diferentes radiobutton
     let field = document.createElement("fieldset");
     let titulo = document.createElement("legend");
     let textTiulo = document.createTextNode("¿Que tipo de objeto ha perdido?")
