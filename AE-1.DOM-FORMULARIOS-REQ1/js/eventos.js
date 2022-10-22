@@ -218,6 +218,8 @@ function formularioObjeto(tablaFormulario){
     tablaFormulario.appendChild(trDinamico);
     tablaFormulario.setAttribute("style", "height: 100%; width: 100%");
     trDinamico.setAttribute("style", "height: 100%; width: 100%");
+    let rdChecked = document.getElementById("Movil");
+    rdChecked.checked = true;
     //Funcionalidad de radiobutton 
     radioButton(trDinamico);
     const divCheck = document.createElement("div");
@@ -322,10 +324,11 @@ function validacionProblemaConductor(){
 //Botón de enviar para cambiar la pagina con un nuevo mensaje
 function enviar(btnEnviar){
 
+    //Obtengo el select y en funcion a él paso un listener distinto
     let element = document.getElementById("selects");
     let text = element.options[element.selectedIndex].text;
     if(text == "Objeto perdido"){
-        
+        //Este listener comprueba si los datos del usuario estan llenos y si se ha seleccionado una opción
             btnEnviar.addEventListener("click", function(){
                 let listado = listaOpcionesObjetos();
                 if(validacionDatos() && validacionCheck(listaOpcionesObjetos(listado))){
@@ -335,13 +338,15 @@ function enviar(btnEnviar){
         })
         
     }else if (text == "Problema con un conductor"){
-      
+      //Este listener comprueba si los datos del usuario estan llenos, una o varias opciones seleccionada y si se ha dado una descripción
+      //del problema
             btnEnviar.addEventListener("click", function(){
                 let listado = listaOpcionesHorario();
                 if(validacionDatos() && validacionProblemaConductor() && validacionCheck(listado)){
                 document.write('<img src="./images/ASINSTANTE_free-file.png">');
                 document.write("<h1>¡Gracias! Contactaremos con usted lo antes posible.</h1>");
             }
+            //Si cualquierda de las dos funciona, se actualiza la página
         })
     }
    
@@ -390,15 +395,17 @@ function listaOpcionesAyuda(){
     let ayudas = ["¿Que asistencia necesita?","Objeto perdido", "Problema con un conductor"];
     return ayudas;    
 }
+//Listado de objetos perdidos
 function listaOpcionesObjetos(){
     let posiblesObjetos = ["Movil","Llaves", "Gafas", "Joyeria", "Otros"];
     return posiblesObjetos;
 }
+//Listado de horarios para los checkbox
 function listaOpcionesHorario(){
     let posiblesHorario = ["De madrugada(00:00-8:00)","Por la mañana(8:00-12:00)", "Tarde(12:00-20:00)", "Noche(20:00-00:00)"];
     return posiblesHorario;
 }
-
+//Funcion para vaciar objetos dom que no utilicemos 
 function vaciadoDinamico(tabla){
     //Obtenemos los nodos hijos de la tabla
     let nodoTable = tabla.childNodes
