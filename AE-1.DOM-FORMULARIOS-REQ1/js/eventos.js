@@ -1,7 +1,7 @@
 
 //Tabla, divFormulario como variable gobal
 const saltito = document.createElement("br");
-function inicializador(){
+window.onload = function(){
     let tabla;
     tabla = document.createElement("table")
     cabeceraPagina(tabla);
