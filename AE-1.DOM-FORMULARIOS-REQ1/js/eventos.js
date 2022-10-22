@@ -3,6 +3,7 @@
 const saltito = document.createElement("br");
 //Funcion que inicializa la pagina al cargar
 window.onload = function(){
+
     let tabla;
     tabla = document.createElement("table")
     cabeceraPagina(tabla);
@@ -51,8 +52,11 @@ function inicializadorDivFormulario(tabla){
     //Interior div
     let tablaFormularios = document.createElement("table");
     tablaFormularios.id = "tablaDinamica";
+    let form;
+    form = document.createElement("form");
+    form.appendChild(tablaFormularios);
     inicializadorDatos(tablaFormularios);
-    divFormulario.appendChild(tablaFormularios);
+    divFormulario.appendChild(form);
 }
 
 //Funcion para inicializar y gestionar datos
@@ -66,6 +70,7 @@ function inicializadorDatos(tablaFormulario){
     let dni = document.createElement("input");
     lbDni.appendChild(dni);
     dni.setAttribute("type", "text");
+    dni.id = 'dni';
     //Composición nombre
     let lbNombre = document.createElement("label");
     let txtNombre = document.createTextNode(" Nombre: ");
@@ -73,6 +78,7 @@ function inicializadorDatos(tablaFormulario){
     let nombre = document.createElement("input");
     lbNombre.appendChild(nombre);
     nombre.setAttribute("type", "text");
+    nombre.id ='nombre';
     //Composición apellido
     let lbApellido = document.createElement("label");
     let txtApellido = document.createTextNode(" Apellidos: ");
@@ -80,6 +86,7 @@ function inicializadorDatos(tablaFormulario){
     let apellido = document.createElement("input");
     lbApellido.appendChild(apellido);
     apellido.setAttribute("type", "text");
+    apellido.id = 'apellido';
     //Composición teléfono
     let lbTelefono = document.createElement("label");
     let txtTelefono = document.createTextNode(" Teléfono: ");
@@ -87,6 +94,7 @@ function inicializadorDatos(tablaFormulario){
     let telefono = document.createElement("input");
     lbTelefono.appendChild(telefono);
     telefono.setAttribute("type", "number");
+    telefono.id = 'telefono';
     //Composición dirección
     let lbDireccion = document.createElement("label");
     let txtDireccion = document.createTextNode(" Dirección: ");
@@ -94,6 +102,7 @@ function inicializadorDatos(tablaFormulario){
     let direccion = document.createElement("input");
     lbDireccion.appendChild(direccion);
     direccion.setAttribute("type", "text");
+    direccion.id = "direccion"
     //Agregando al contenedor
     trDatos.appendChild(lbNombre);
     trDatos.appendChild(lbApellido);
@@ -114,9 +123,9 @@ function formularioProblemas(tablaFormulario){
     let textTiulo = document.createTextNode("¿En que horario ocurrió? (Seleccione varios si hubo un cambio de horario en el transcurso del viaje)")
     titulo.appendChild(textTiulo);
     field.appendChild(titulo);
-    let posiblesObjetos = ["De madrugada(00:00-8:00)","Por la mañana(8:00-12:00)", "Tarde(12:00-20:00)", "Noche(20:00-00:00)"];
+    let posiblesHortarios = listaOpcionesHorario();
     //Creamos radio button con 4 opciones
-    for(objetos of posiblesObjetos){    
+    for(objetos of posiblesHortarios){    
         const radio = document.createElement("label");
         radio.textContent=objetos;
         const radioBtn = document.createElement("input");
@@ -143,6 +152,7 @@ function formularioProblemas(tablaFormulario){
     //Creamos la imagen contenedora para seleecionar la marca, con el logo de base
     let imagenMarca = document.createElement("img");
     imagenMarca.src = "./images/ASINSTANTE_free-file.png";
+    imagenMarca.id = "imagenMarca";
     imagenMarca.setAttribute("style", "height: 250px; width: 300px;");
     let divImagen = document.createElement("div");
     field.appendChild(imagenMarca);
@@ -154,6 +164,7 @@ function formularioProblemas(tablaFormulario){
     //Funcion cambio de imagenes
     cambioImagen (btnPrev, imagenMarca);
     let textAreaOpcion = document.createElement("textArea");
+    textAreaOpcion.id="atxt";
     textAreaOpcion.placeholder = "Introduzca una descripción de lo que ha ocurrido";
     textAreaOpcion.setAttribute("style", "heigh: 40%; width: 95%; margin: 8px")
     trDinamico.appendChild(textAreaOpcion);
@@ -187,7 +198,7 @@ function formularioObjeto(tablaFormulario){
     titulo.appendChild(textTiulo);
     field.appendChild(titulo);
 
-    let posiblesObjetos = ["Movil","Llaves", "Gafas", "Joyeria", "Otros"];
+    let posiblesObjetos = listaOpcionesObjetos();
     //Creamos radio button con 5 opciones
     for(objetos of posiblesObjetos){    
         const radio = document.createElement("label");
@@ -262,12 +273,78 @@ function checkButton(divCheck){
     })
         
 }
+//Control de datos del usuario
+function validacionDatos(){
+    if(document.getElementById("dni").value.length==0){
+        alert('[ERROR] Introduzca un DNI valido');
+        return false;
+    }
+    if(document.getElementById("nombre").value.length==0){
+        alert('[ERROR] Introduzca un nombre');
+        return false;
+    }
+    if(document.getElementById("apellido").value.length==0){
+        alert('[ERROR] Introduzca sus apellidos');
+        return false;
+    }
+    if(document.getElementById("telefono").value.length==0){
+        alert('[ERROR] Introduzca su telefono');
+        return false;
+    }
+    if(document.getElementById("direccion").value.length==0){
+        alert('[ERROR] Introduzca una dirección');
+        return false;
+    }
+    return true;
+}
+function validacionCheck(listado){
+    for(objeto of listado){
+        let elementoActivo = document.querySelector(`input[id="${objeto}"]:checked`);
+        console.log(objeto);
+        if(elementoActivo) {
+            console.log(elementoActivo);
+            return true;
+        } else {
+            alert('[ERROR] Debe seleccionar una opción');
+            return false;
+        }
+    }
+   
+}
+function validacionProblemaConductor(){
+    let descripcion = document.getElementById("atxt");
+    if(descripcion.value.length==0){
+        alert('[ERROR] Introduzca una descripción de lo ocurrido');
+        return false;
+    }
+    return true;
+}
 //Botón de enviar para cambiar la pagina con un nuevo mensaje
 function enviar(btnEnviar){
-    btnEnviar.addEventListener("click", function(){
-        document.write('<img src="./images/ASINSTANTE_free-file.png">');
-        document.write("<h1>¡Gracias! Contactaremos con usted lo antes posible.</h1>");
-    })
+
+    let element = document.getElementById("selects");
+    let text = element.options[element.selectedIndex].text;
+    if(text == "Objeto perdido"){
+        
+            btnEnviar.addEventListener("click", function(){
+                let listado = listaOpcionesObjetos();
+                if(validacionDatos() && validacionCheck(listaOpcionesObjetos(listado))){
+                document.write('<img src="./images/ASINSTANTE_free-file.png">');
+                document.write("<h1>¡Gracias! Contactaremos con usted lo antes posible.</h1>");
+            }
+        })
+        
+    }else if (text == "Problema con un conductor"){
+      
+            btnEnviar.addEventListener("click", function(){
+                let listado = listaOpcionesHorario();
+                if(validacionDatos() && validacionProblemaConductor() && validacionCheck(listado)){
+                document.write('<img src="./images/ASINSTANTE_free-file.png">');
+                document.write("<h1>¡Gracias! Contactaremos con usted lo antes posible.</h1>");
+            }
+        })
+    }
+   
 }
 //Funcion para crear y gestionar el select de opciones
 function inicializadorSelect(tabla){
@@ -312,6 +389,14 @@ function interaccionEventoSelect(selects){
 function listaOpcionesAyuda(){
     let ayudas = ["¿Que asistencia necesita?","Objeto perdido", "Problema con un conductor"];
     return ayudas;    
+}
+function listaOpcionesObjetos(){
+    let posiblesObjetos = ["Movil","Llaves", "Gafas", "Joyeria", "Otros"];
+    return posiblesObjetos;
+}
+function listaOpcionesHorario(){
+    let posiblesHorario = ["De madrugada(00:00-8:00)","Por la mañana(8:00-12:00)", "Tarde(12:00-20:00)", "Noche(20:00-00:00)"];
+    return posiblesHorario;
 }
 
 function vaciadoDinamico(tabla){
