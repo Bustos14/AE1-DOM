@@ -41,9 +41,6 @@ btnEnviar.onclick = function(e){
 
 }
 
-function suma(a,b){
-    return a + b;
-}
 
 //Función mostrar total
     let pTotal = document.getElementById("total");
