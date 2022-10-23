@@ -12,47 +12,22 @@ let validarFormulario = function(e){
     return ok;
 }
 
-
 window.onload = function(){
-//Constantes con los valores
-const telefono = document.getElementById("telefono").value;
-const direccion = document.getElementById("direccion").value;
-const email = document.getElementById("email").value;
-
-const parrafoAlert = document.getElementById("parrafoAlert");
-
-const formulario = document.getElementById("formulario");
-
-const pequenia = document.getElementById("pequenia")
-const mediana = document.getElementById("mediana")
-const grande = document.getElementById("grande")
-
-const ing1 = document.getElementById("ing1");
-const ing2 = document.getElementById("ing2");
-const ing3 = document.getElementById("ing3");
-const ing4 = document.getElementById("ing4");
-
 const btnEnviar = document.getElementById("btnEnviar");
 
 btnEnviar.onclick = function(e){
-    if(!validarFormulario()){
-        e.preventDefault();
-    }
-
-}
-
-
-//Función mostrar total
-    let pTotal = document.getElementById("total");
-    let total = 0;
-btnEnviar.onclick = function(e){
+    
     //Variable para seleccionar los radios con el nombre tamaño y esten chekeados
     let radioActivo = document.querySelector('input[name="tamaño"]:checked');
     //Variable para seleccionar los check con el nombre ingredientes
     let checks = document.querySelector('input[name="ingredientes"]:checked');
-    if(radioActivo) {
+    let pTotal = document.getElementById("total");
+    let total = 0;
+    if(!validarFormulario()){
+        e.preventDefault();
+    }if(radioActivo) {
         total += Number(radioActivo.value);
-    } if(checks) {
+    }if(checks) {
         total += Number(checks.value);
     }
     else {
@@ -61,7 +36,9 @@ btnEnviar.onclick = function(e){
     }
 
     pTotal.innerHTML = `El precio total es ${total} €`
+
 }
+
 
 
 
