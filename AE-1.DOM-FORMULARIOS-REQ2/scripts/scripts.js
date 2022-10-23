@@ -20,7 +20,7 @@ btnEnviar.onclick = function(e){
     //Variable para seleccionar los radios con el nombre tamaño y esten chekeados
     let radioActivo = document.querySelector('input[name="tamaño"]:checked');
     //Variable para seleccionar los check con el nombre ingredientes
-    let checks = document.querySelector('input[name="ingredientes"]:checked');
+    let checks = document.querySelector('input[name="ingredientes"]');
     let pTotal = document.getElementById("total");
     let total = 0;
     if(!validarFormulario()){
@@ -28,6 +28,7 @@ btnEnviar.onclick = function(e){
     }if(radioActivo) {
         total += Number(radioActivo.value);
     }if(checks) {
+        if(checks)
         total += Number(checks.value);
     }
     else {
