@@ -27,7 +27,7 @@ btnEnviar.onclick = function(e){
     }
 }
 
-btnEnviar.onclick = function(){
+btnEnviar.onclick = function(e){
     
     //Variable para seleccionar los radios con el nombre tamaño y esten chekeados
     let radioActivo = document.querySelector('input[name="tamaño"]:checked');
@@ -42,15 +42,21 @@ btnEnviar.onclick = function(){
     if(radioActivo) {
         //a total le sumamos el valor del radio
         total += Number(radioActivo.value);
-        //Recorremos con un for la lista de los checks marcados, por cada check marcado
+    if(checks){
+         //Recorremos con un for la lista de los checks marcados, por cada check marcado
         //le sumamos 1 (de 1€) por ingrediente
         for(let i = 0; i < checks.length; i++){
             if(checks[i].checked){
                 cont = cont + 1;
             }
         }
+        if(cont==0){
+            e.preventDefault();
+            alert('Debes introducir al menos 1 ingrediente, gracias');
+        }
         //Su mamos al total la cantidad de checks marcados
         total = total + cont;
+    }
         //En caso de que no haya ningun radio marcado lanzamos el mensaje mediante alert
     }else {
         e.preventDefault();
@@ -59,6 +65,8 @@ btnEnviar.onclick = function(){
 
     //Por último modificamos el HTML del <p> con id total y le introducimos el total de la pizza
     pTotal.innerHTML = `El precio total es ${total} €`
+    //Muestro por alert lo mismo que en parrafo
+    alert(`El precio total es ${total} €`)
 
 }
 
