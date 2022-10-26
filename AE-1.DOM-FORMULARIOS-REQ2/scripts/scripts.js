@@ -66,7 +66,7 @@ btnEnviar.onclick = function(e){
     //Por último modificamos el HTML del <p> con id total y le introducimos el total de la pizza
     pTotal.innerHTML = `El precio total es ${total} €`
     //Muestro por alert lo mismo que en parrafo
-    alert(`El precio total es ${total} €`)
+    alert(`El precio total será ${total} €`)
 
 }
 
