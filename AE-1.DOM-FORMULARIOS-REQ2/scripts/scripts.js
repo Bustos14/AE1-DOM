@@ -63,8 +63,13 @@ btnEnviar.onclick = function(e){
         alert('Debes seleccionar un tamaño y almenos un ingrediente');
     }
 
+    if(nombre.value.trim() == "" || telefono.value.trim() == ""|| direccion.value.trim() == "" || email.value.trim() == ""){
+        pTotal.innerHTML = `Debes introducir todos los campos`
+    } else {
+        alert(`El precio total será ${total}€ gracias por todo!`)
+        pTotal.innerHTML = `El precio total es ${total} €`
+    }
     //Por último modificamos el HTML del <p> con id total y le introducimos el total de la pizza
-    pTotal.innerHTML = `El precio total es ${total} €`
     //Muestro por alert lo mismo que en parrafo
     alert(`El precio total será ${total} €`)
 
